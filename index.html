@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi di Server Pribadi Anda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, #111827, #000000);
+            color: #f9fafb;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title-wrapper {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .main-title {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(to right, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        .description {
+            font-size: 18px;
+            color: #d1d5db;
+            margin-bottom: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        @media (min-width: 640px) {
+            .app-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .app-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .app-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid #374151;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .app-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .app-image-wrapper {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .app-image {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: cover; /* Mengubah object-fit menjadi cover */
+            border-radius: 8px;
+            height: 100%; /* Memastikan gambar mengisi wrapper sepenuhnya */
+        }
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .app-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .category-badge {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 6px 10px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .category-badge.pribadi {
+            background-color: rgba(167, 139, 250, 0.2);
+            color: #a855f7;
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+        .app-description {
+            color: #d1d5db;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+        .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (min-width: 640px) {
+            .button-wrapper {
+                flex-direction: row;
+                gap: 16px;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        .custom-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            text-decoration: none;
+            gap: 8px;
+            flex: 1;
+        }
+        @media (min-width: 640px) {
+            .custom-button {
+                width: auto;
+                flex: none;
+            }
+        }
+        .outline-button {
+            background-color: transparent;
+            color: #f9fafb;
+            border: 1px solid #4b5563;
+        }
+        .outline-button:hover {
+            background-color: #4b5563;
+            color: #ffffff;
+            border-color: #6b7280;
+        }
+        .access-button {
+            background-color: rgba(52, 211, 153, 0.2);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        .access-button:hover {
+            background-color: rgba(52, 211, 153, 0.4);
+            color: #ffffff;
+            border-color: rgba(52, 211, 153, 0.4);
+        }
+        .disclaimer {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #9ca3af;
+            padding-top: 24px;
+            margin-top: auto;
+        }
+        .icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-wrapper">
+            <h1 class="main-title">Aplikasi di Server Pribadi Anda</h1>
+            <p class="description">Daftar aplikasi yang di-host di server pribadi Anda.</p>
+        </div>
+        <div class="app-grid">
+        </div>
+        <p class="disclaimer">
+            Disclaimer: Website ini dibuat untuk tujuan informasi saja. Kami tidak bertanggung jawab atas konten atau ketersediaan aplikasi pihak ketiga. Informasi yang diberikan di sini hanya untuk tujuan demonstrasi.
+        </p>
+    </div>
+    <script>
+        const apps = [
+            {
+                name: 'Nextcloud',
+                description: 'Platform kolaborasi dan penyimpanan file yang aman, di-host di server pribadi.',
+                url: 'https://nextcloud.com/',
+                category: 'Produktivitas',
+                serverUrl: 'https://my-server.com/nextcloud',
+                imageUrl: 'https://web-cms.biznetgio.com/uploads/2022_November_Mengenal_Apa_itu_Next_Cloud_Platform_Private_Cloud_935f818507.webp',
+            },
+            {
+                name: 'Jellyfin',
+                description: 'Sistem media server untuk streaming film dan TV, di-host di server pribadi.',
+                url: 'https://jellyfin.org/',
+                category: 'Hiburan',
+                serverUrl: 'https://my-server.com/jellyfin',
+                imageUrl: 'https://m.media-amazon.com/images/I/51i0m01RSxL.png',
+            },
+            {
+                name: 'Portainer',
+                description: 'Manajemen kontainer untuk Docker dan Kubernetes di server pribadi.',
+                url: 'https://www.portainer.io/',
+                category: 'Alat',
+                serverUrl: 'https://my-server.com:9000',
+                imageUrl: 'https://miro.medium.com/v2/resize:fit:1400/0*1JbTc3zIaU6UgokI.jpg',
+            },
+            {
+                name: 'Stirling PDF',
+                description: 'Alat untuk memanipulasi file PDF, di-host di server pribadi.',
+                url: 'https://github.com/frodon/Stirling-PDF',
+                category: 'Produktivitas',
+                serverUrl: 'https://my-server.com/stirling-pdf',
+                imageUrl: 'https://nelsong.net/assets/img/Stirling%20PDF%20-%20Rev02.png',
+            },
+            {
+                name: 'Vaultwarden',
+                description: 'Manajer kata sandi (alternatif Bitwarden), di-host di server pribadi.',
+                url: 'https://github.com/dani-garcia/vaultwarden',
+                category: 'Produktivitas',
+                serverUrl: 'https://my-server.com/vaultwarden',
+                imageUrl: 'https://via.placeholder.com/150',
+            },
+            {
+                name: 'Home Assistant',
+                description: 'Platform otomatisasi rumah, di-host di server pribadi.',
+                url: 'https://www.home-assistant.io/',
+                category: 'Pribadi',
+                serverUrl: 'https://my-server.com:8123',
+                imageUrl: 'https://via.placeholder.com/150',
+            },
+            {
+                name: 'NextAuth.js',
+                description: 'Solusi otentikasi untuk aplikasi Next.js, di-host di server pribadi.',
+                url: 'https://next-auth.js.org/',
+                category: 'Pengembangan',
+                serverUrl: 'https://my-server.com/nextauth',
+                imageUrl: 'https://via.placeholder.com/150',
+            },
+            {
+                name: 'Plex',
+                description: 'Server media untuk mengatur dan streaming konten, di-host di server pribadi.',
+                url: 'https://www.plex.tv/',
+                category: 'Hiburan',
+                serverUrl: 'https://my-server.com/plex',
+                imageUrl: 'https://via.placeholder.com/150',
+            },
+        ];
+
+        const appGrid = $('.app-grid');
+
+        apps.forEach(app => {
+            const card = $('<div class="app-card"></div>');
+            const imageWrapper = $('<div class="app-image-wrapper"></div>');
+            const image = $(`<img src="${app.imageUrl}" alt="${app.name}" class="app-image">`);
+            imageWrapper.append(image);
+
+            const cardContent = $('<div class="card-content"></div>');
+            const title = $('<div class="app-title"></div>');
+            title.text(app.name);
+            const categoryBadge = $(`<span class="category-badge ${app.category === 'Pribadi' ? 'pribadi' : app.category}">${app.category}</span>`);
+            title.append(categoryBadge);
+
+            const description = $('<p class="app-description"></p>');
+            description.text(app.description);
+
+            const buttonWrapper = $('<div class="button-wrapper"></div>');
+            const officialButton = $(`<a href="${app.url}" target="_blank" rel="noopener noreferrer" class="custom-button outline-button">
+                <i class="fas fa-link icon"></i>
+                Situs Resmi
+            </a>`);
+            const accessButton = app.serverUrl ? $(`<a href="${app.serverUrl}" target="_blank" rel="noopener noreferrer" class="custom-button access-button">
+                <i class="fas fa-server icon"></i>
+                Akses Server
+            </a>`) : null;
+
+            // Hapus conditional source code button
+            buttonWrapper.append(officialButton);
+            if (accessButton) {
+                buttonWrapper.append(accessButton);
+            }
+
+            cardContent.append(title);
+            cardContent.append(description);
+            cardContent.append(buttonWrapper);
+
+            card.append(imageWrapper);
+            card.append(cardContent);
+
+            appGrid.append(card);
+        });
+    </script>
+</body>
+</html>
