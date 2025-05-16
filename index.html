@@ -218,13 +218,14 @@
         </p>
     </div>
     <script>
+        const domain = "http://192.168.100.36"
         const apps = [
             {
                 name: 'Nextcloud',
                 description: 'Platform kolaborasi dan penyimpanan file yang aman, di-host di server pribadi.',
                 url: 'https://nextcloud.com/',
                 category: 'Produktivitas',
-                serverUrl: 'http://192.168.100.36:8000',
+                serverUrl: domain+':8000',
                 imageUrl: 'https://web-cms.biznetgio.com/uploads/2022_November_Mengenal_Apa_itu_Next_Cloud_Platform_Private_Cloud_935f818507.webp',
             },
             {
@@ -232,7 +233,7 @@
                 description: 'Manajemen kontainer untuk Docker dan Kubernetes di server pribadi.',
                 url: 'https://www.portainer.io/',
                 category: 'Alat',
-                serverUrl: 'http://192.168.100.36/portainer',
+                serverUrl: domain+'/portainer',
                 imageUrl: 'https://miro.medium.com/v2/resize:fit:1400/0*1JbTc3zIaU6UgokI.jpg',
             },
             {
@@ -240,7 +241,7 @@
                 description: 'Antarmuka web sederhana untuk mengelola reverse proxy Nginx, SSL, dan domain dengan mudah.',
                 url: 'https://nginxproxymanager.com/',
                 category: 'Alat',
-                serverUrl: 'http://192.168.100.36:81',
+                serverUrl: domain+':81',
                 imageUrl: 'https://www.blackvoid.club/content/images/2022/05/nginxproxymanager.jpg',
             },
             {
