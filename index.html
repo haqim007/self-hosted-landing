@@ -219,14 +219,14 @@
         </p>
     </div>
     <script>
-        const domain = "http://192.168.100.36"
+        const domain = "hanov.duckdns.org"
         const apps = [
             {
                 name: 'Nextcloud',
                 description: 'Platform kolaborasi dan penyimpanan file yang aman, di-host di server pribadi.',
                 url: 'https://nextcloud.com/',
                 category: 'Produktivitas',
-                serverUrl: domain+':8000',
+                serverUrl: 'cloud.'+domain,
                 imageUrl: 'https://web-cms.biznetgio.com/uploads/2022_November_Mengenal_Apa_itu_Next_Cloud_Platform_Private_Cloud_935f818507.webp',
             },
             {
@@ -234,7 +234,7 @@
                 description: 'Manajemen kontainer untuk Docker dan Kubernetes di server pribadi.',
                 url: 'https://www.portainer.io/',
                 category: 'Alat',
-                serverUrl: domain+'/portainer',
+                serverUrl: 'portainer.'+domain,
                 imageUrl: 'https://miro.medium.com/v2/resize:fit:1400/0*1JbTc3zIaU6UgokI.jpg',
             },
             {
@@ -242,15 +242,23 @@
                 description: 'Antarmuka web sederhana untuk mengelola reverse proxy Nginx, SSL, dan domain dengan mudah.',
                 url: 'https://nginxproxymanager.com/',
                 category: 'Alat',
-                serverUrl: domain+':81',
+                serverUrl: 'npm.'+domain,
                 imageUrl: 'https://www.blackvoid.club/content/images/2022/05/nginxproxymanager.jpg',
+            },
+            {
+                name: 'SearXNG',
+                description: 'Private search engine. Tanpa tracking',
+                url: 'https://docs.searxng.org/',
+                category: 'Alat',
+                serverUrl: 'search.'+domain,
+                imageUrl: 'https://elest.io/open-source/searxng/resources/images/search.jpg',
             },
             {
                 name: 'Jellyfin',
                 description: 'Sistem media server untuk streaming film dan TV, di-host di server pribadi.',
                 url: 'https://jellyfin.org/',
                 category: 'Hiburan',
-                serverUrl: 'https://my-server.com/jellyfin',
+                serverUrl: 'stream.'+domain,
                 imageUrl: 'https://m.media-amazon.com/images/I/51i0m01RSxL.png',
             },
             {
@@ -258,7 +266,7 @@
                 description: 'Alat untuk memanipulasi file PDF, di-host di server pribadi.',
                 url: 'https://github.com/frodon/Stirling-PDF',
                 category: 'Produktivitas',
-                serverUrl: 'https://my-server.com/stirling-pdf',
+                serverUrl: 'pdf.'+domain,
                 imageUrl: 'https://nelsong.net/assets/img/Stirling%20PDF%20-%20Rev02.png',
             },
             {
@@ -266,7 +274,7 @@
                 description: 'Manajer kata sandi (alternatif Bitwarden), di-host di server pribadi.',
                 url: 'https://github.com/dani-garcia/vaultwarden',
                 category: 'Produktivitas',
-                serverUrl: 'https://my-server.com/vaultwarden',
+                serverUrl: 'vault.'+domain,
                 imageUrl: 'https://via.placeholder.com/150',
             },
             {
